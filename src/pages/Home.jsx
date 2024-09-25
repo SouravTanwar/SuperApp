@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './Home.css'
 
 
 function Home() {
@@ -34,7 +35,7 @@ function Home() {
     else if (!/\S+@\S+\.\S+/.test(data.Email)) error.Email = "Email is invalid";
     if (!data.Mobile.trim()) error.Mobile = "Field is required";
     else if (!/^\d{10}$/.test(data.Mobile)) error.Mobile = "Contact number is invalid";
-    if (!data.Consent) error.Consent = "Field is required";
+    if (!data.Consent) error.Consent = "Check this box if you want to proceed";
 
     setErrors(error);
 
@@ -55,63 +56,70 @@ function Home() {
   }
 
   return (
-    <div style={{width:"40vw", marginLeft:"auto", marginRight:"auto"}} >
+    <div className="container">
+    <div className="background">
+      <h1>Discover new things on Superapp</h1>
+    </div>
+    <div className="form-container">
       <h1>Super App</h1>
-      <h5>Create your new account</h5>
-      <form 
-        onSubmit={handleSubmit}
-        style={{display:"flex", flexDirection: "column", gap:"15px"}}
-      >
+      <h4>Create your new account</h4>
+      <form onSubmit={handleSubmit} className="form">
         <input 
           type='text'
           name="Name"
           value={data.Name}
           onChange={handleInput}
           placeholder='Name'
+          className="input"
         />
-        <span style={{color:"red", height:"10px"}}>{errors.Name}</span>
+        <span className="error">{errors.Name}</span>
         <input 
           type='text'
           name="UserName"
           value={data.UserName}
           onChange={handleInput}
           placeholder='UserName'
+          className="input"
         />
-        <span style={{color:"red", height:"10px"}}>{errors.UserName}</span>
+        <span className="error">{errors.UserName}</span>
         <input 
           type='email'
           name="Email"
           value={data.Email}
           onChange={handleInput}
           placeholder='Email'
+          className="input"
         />
-        <span style={{color:"red", height:"10px"}}>{errors.Email}</span>
+        <span className="error">{errors.Email}</span>
         <input 
           type='tel'
           name="Mobile"
           value={data.Mobile}
           onChange={handleInput}
           placeholder='Mobile'
+          className="input"
         />
-        <span style={{color:"red", height:"10px"}}>{errors.Mobile}</span>
-        <div>
-        <input 
-          type='checkbox'
-          name="Consent"
-          value={data.Consent}
-          onChange={handleInput}
-        />
-        <label htmlFor='Consent'>Share my registration data with Superapp</label>
+        <span className="error">{errors.Mobile}</span>
+        <div className="consent-container">
+          <input 
+            type='checkbox'
+            name="Consent"
+            value={data.Consent}
+            onChange={handleInput}
+            className="checkbox"
+          />
+          <label htmlFor='Consent'>Share my registration data with Superapp</label>
         </div>
-        <span style={{color:"red", height:"10px"}}>{errors.Consent}</span>
-        <button>
+        <span className="error">{errors.Consent}</span>
+        <button className="submit-button">
           SIGN UP
         </button>
       </form>
-
-      <h6>By clicking on Sign up. you agree to Superapp Terms and Conditions of Use</h6>
-      <h6>To learn more about how Superapp collects, uses, shares and protects your personal data please head Superapp Privacy Policy</h6>
+  
+      <p className="conditions">By clicking on Sign up, you agree to Superapp <span>Terms and Conditions of Use</span></p>
+      <p className="conditions">To learn more about how Superapp collects, uses, shares and protects your personal data, please head to Superapp <span>Privacy Policy</span></p>
     </div>
+  </div>  
   )
 }
 
