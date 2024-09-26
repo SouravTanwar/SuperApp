@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Home.css'
 
 
@@ -18,6 +19,8 @@ function Home() {
     Mobile: "",
     Consent: ""
   })
+
+  const navigate = useNavigate()
 
   const handleInput= (e) => {
     setData({
@@ -52,6 +55,8 @@ function Home() {
       Mobile: "",
       Consent: false
     })
+
+    navigate("/selection")
 
   }
 
