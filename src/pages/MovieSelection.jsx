@@ -55,7 +55,7 @@ const MovieSelection = () => {
             alert("choice selected successfully")
             localStorage.setItem("selectedMovies",JSON.stringify(selectedMovies))
             setSelectedMovies([])
-            navigate("/")
+            navigate("/carousel")
         }
         
     }
